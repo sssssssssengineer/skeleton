@@ -95,4 +95,10 @@ public class Planet {
         xxPos = xxPos + dt * xxVel;
         yyPos = yyPos + dt * yyVel;
     }
+
+    //draw itself in specific position
+    public void draw(){
+        String planetIcon = "./images/" + imgFileName;
+        StdDraw.picture(xxPos, yyPos, planetIcon);
+    }
 }	
