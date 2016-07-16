@@ -96,4 +96,17 @@ public class LinkedListDeque<Item> {
         }
         return runner.item;
     }
+
+    private Item getRecursive(Node runner, int index){//private helper function
+        if (index == 0){
+            return runner.item;
+        }
+        return getRecursive(runner.next, index - 1);
+    }
+
+    public Item getRecursive(int index){
+        if (isEmpty()){ return null; }
+        if (index > size - 1) { return null; }
+        return getRecursive(header.next, index);
+    }
 }
