@@ -19,6 +19,14 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
+	public static boolean checkEqualInteger(Integer expected, Integer actual){
+		if (expected != actual) {
+			System.out.println("get() returned " + actual + ", but expected: " + expected);
+			return false;
+		}
+		return true;
+	}
+
 	/* Prints a nice message based on whether a test passed. 
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
@@ -83,9 +91,25 @@ public class LinkedListDequeTest {
 
 	}
 
+	/** Check whether methods get and getRecursive work fine */
+	public static void getTest(){
+		System.out.println("Running get test.");
+		//LinkedListDeque2<Integer> lld1 = new LinkedListDeque2<Integer>();
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+		boolean passed  = checkEmpty(true, lld1.isEmpty());
+		lld1.addFirst(3);
+		lld1.addFirst(2);
+		lld1.addFirst(1);
+		passed = checkEqualInteger(3, lld1.get(2)) && passed;
+		passed = checkEqualInteger(2, lld1.getRecursive(1)) && passed;
+		passed = checkEqualInteger(1, lld1.get(0)) && passed;
+		printTestStatus(passed);
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+		getTest();
 	}
 } 
