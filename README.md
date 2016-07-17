@@ -25,9 +25,9 @@ alias md="C:/Program\ Files\ \(x86\)/cmd_markdown_win64/Cmd\ Markdown.exe"
 
 ## Notes 
 
-### lec9
+### lec9: Extends, Casting, Higher Order Functions
 
-**1. Constructors are not inherited.** However, the rules of Java say that all subclass constructors must start with a call to a constructor for the super class. If not, then `VengefulSList`'s `sentinel` would be null, which is bad.
+**Constructors are not inherited.** However, the rules of Java say that all subclass constructors must start with a call to a constructor for the super class. If not, then `VengefulSList`'s `sentinel` would be null, which is bad.
 
 ```java
 // These constructors are exactly equivalent.
@@ -43,7 +43,11 @@ public VengefulSList(){
 }
 ```
 
-**2. Implementation Inheritance Breaks Encapsulation**. Uses following example to show that. Consider a dog.
+
+----------
+
+
+**Implementation Inheritance Breaks Encapsulation**. Uses following example to show that. Consider a dog.
 
 ```java
 class Dog{
@@ -94,3 +98,13 @@ public static void main(String[] args){
 
 If `Dog` class is actually implemented in the 2nd way, then bug comes. It prints "As a dog, I say: " and never ends.
 
+
+----------
+
+
+**Compile-time type and Runtime type**. Even though `sl` "points to" `VengefulSList` object, that its runtime type is `VengefulSList`, `sl` is declared as `SList` variable, that its compile-time type (static type) is `SList`.
+
+![lec9page25][1]
+
+
+  [1]: http://static.zybuluo.com/cys/ipbxqo2nog6kjh3zbjygi9mr/image_1ansf2svj5od15o71lapauahru9.png
