@@ -12,19 +12,19 @@ To avoid typing in `Git Bash` each time I run it the following 2 lines:
 
 ```
 alias subl='"C:\Program Files\Sublime Text 2\sublime_text.exe" $@'
-alias md='"C:\Program Files (x86)\cmd_markdown_win64\CmdMarkdown.exe" $@'
 ```
 
 I follow instruction [Setting up Sublime](https://www.udacity.com/wiki/ud775/sublime), create a `.bashrc` at `C:\Users\CYS` with following content. Remember to put `\` before any `Space`, `(` and `)`.
 
 ```
 alias subl="C:/Program\ Files/Sublime\ Text\ 2/sublime_text.exe"
-alias md="C:/Program\ Files\ \(x86\)/cmd_markdown_win64/Cmd\ Markdown.exe"
 ```
 
 ### Markdown Editor
 
 I follow instruction [here](http://www.cnblogs.com/IPrograming/p/Sublime-markdown-editor.html), use `Sublime Text` as my Markdown editor. For more detail, view [here](http://m.blog.csdn.net/article/details?id=51235792).
+
+Attaching pictures into Markdown is what I concern. First, I follow instruction [here](https://www.tekrevue.com/tip/how-to-take-and-manage-screenshots-in-windows-8/), make screenshots restored in `pics/`. 
 
 
 ## Notes 
@@ -109,6 +109,8 @@ If `Dog` class is actually implemented in the 2nd way, then bug comes. It prints
 **Compile-time type and Runtime type**. Even though `sl` "points to" `VengefulSList` object, that its runtime type is `VengefulSList`, `sl` is declared as `SList` variable, that its compile-time type (static type) is `SList`.
 
 ![lec9page25][1]
+
+![lec9page25](pics/1.png)
 
 
   [1]: http://static.zybuluo.com/cys/ipbxqo2nog6kjh3zbjygi9mr/image_1ansf2svj5od15o71lapauahru9.png
