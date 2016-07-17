@@ -71,9 +71,12 @@ public class ArrayDequeTest {
         for (int i = 0; i < 32; i++){
             actual.addLast(i);
         }
-        for (int i = 0; i < )
-        assertEquals(actual.dequeString(), "0 1 2 3 4 5 6 7 8");
-        assertEquals(actual.size(), 9);
+        for (int i = 0; i < 24; i++){
+            actual.removeLast();
+        }
+        actual.removeLast();
+        assertEquals(actual.dequeString(), "0 1 2 3 4 5 6");
+        assertEquals(actual.size(), 7);
     }
 
     public static void main(String[] args) {

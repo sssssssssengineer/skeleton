@@ -4,6 +4,7 @@
  */
 public class ArrayDeque<Item> {
     private static int INIT_CAPACITY = 8;
+    private static int SHRINK_THRESHOLD = 16;
     private static int RESIZE_FACTOR = 2;
     private static double USAGE_FACTOR = 0.25;
     public Item[] items;
@@ -51,7 +52,7 @@ public class ArrayDeque<Item> {
         Item toRemove = getItem(front);
         setItem(null, front);
         size = size - 1;
-        //shrink if too spacious
+        if (capacity >= SHRINK_THRESHOLD && size < capacity * USAGE_FACTOR){ shrink(); }
         return toRemove;
     }
     public Item removeLast(){
@@ -59,7 +60,7 @@ public class ArrayDeque<Item> {
         Item toRemove = getItem(rear);
         setItem(null, rear);
         size = size - 1;
-        //shrink if too spacious
+        if (capacity >= SHRINK_THRESHOLD && size < capacity * USAGE_FACTOR){ shrink(); }
         return toRemove;
     }
 
@@ -74,22 +75,9 @@ public class ArrayDeque<Item> {
      * Performance optimization: resize
      * Expand when it's full, shrink when it's too spacious
      */
-    public void expand(){
-        Item[] newItems = (Item[]) new Object[capacity * RESIZE_FACTOR];
-        /*
-        int runner = nextRight(front);
-        int newItemsIndex = 1;
-        while (runner != nextLeft(rear)){
-            newItems[newItemsIndex] = getItem(runner);
-            newItemsIndex++;
-            runner = nextRight(runner);
-        }
-        newItems[newItemsIndex] = getItem(runner);
-        items = newItems;
-        capacity *= RESIZE_FACTOR;
-        front = 0;
-        rear = newItemsIndex + 1;
-        */
+    public void resize(double factor){
+        int newItemsLength = (int) (capacity * factor);
+        Item[] newItems = (Item[]) new Object[newItemsLength];
         int beginIndex = nextRight(front);
         int endIndex = nextLeft(rear);
         if (endIndex < beginIndex){
@@ -99,26 +87,17 @@ public class ArrayDeque<Item> {
             System.arraycopy(items, beginIndex, newItems, 1, endIndex - beginIndex + 1);
         }
         items = newItems;
-        rear = capacity + 1;
-        capacity *= RESIZE_FACTOR;
+        rear = size + 1;
+        capacity = newItemsLength;
         front = 0;
     }
-    public void shrink(){
-        Item[] newItems = (Item[]) new Object[capacity / RESIZE_FACTOR];
-        int beginIndex = nextRight(front);
-        int endIndex = nextLeft(rear);
-        if (endIndex < beginIndex){
-            System.arraycopy(items, beginIndex, newItems, 1, capacity - beginIndex);
-            System.arraycopy(items, 0, newItems, capacity - beginIndex + 1, endIndex + 1);
-        } else {
-            System.arraycopy(items, beginIndex, newItems, 1, capacity);
-        }
-        items = newItems;
-        rear = capacity + 1;
-        capacity *= RESIZE_FACTOR;
-        front = 0;
+    public void expand(){
+        resize(RESIZE_FACTOR);
     }
 
+    public void shrink(){
+        resize(1/(double)RESIZE_FACTOR);
+    }
 
     /** Present deque using a String */
     public String dequeString(){
@@ -133,11 +112,8 @@ public class ArrayDeque<Item> {
         return res;
     }
 
-
     /** Trivial methods */
     public boolean isEmpty(){ return size == 0; }
     public int size(){ return size; }
-
-
 
 }
