@@ -1,2 +1,2 @@
 # skeleton
-skeleton code for cs61b
+Code for cs61b, both skeleton and implementations.
