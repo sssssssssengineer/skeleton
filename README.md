@@ -22,6 +22,10 @@ alias subl="C:/Program\ Files/Sublime\ Text\ 2/sublime_text.exe"
 alias md="C:/Program\ Files\ \(x86\)/cmd_markdown_win64/Cmd\ Markdown.exe"
 ```
 
+### Markdown Editor
+
+I follow instruction [here](http://www.cnblogs.com/IPrograming/p/Sublime-markdown-editor.html), use `Sublime Text` as my Markdown editor. For more detail, view [here](http://m.blog.csdn.net/article/details?id=51235792).
+
 
 ## Notes 
 
