@@ -24,13 +24,56 @@ public class ArrayDequeTest {
     }
 
     @Test
-    public void testDequeToString(){
+    public void testDequeString(){
         ArrayDeque<Integer> actual = new ArrayDeque<Integer>();
         actual.addFront(0);
         actual.addFront(7);
         actual.addFront(6);
         actual.addLast(1);
         assertEquals(actual.dequeString(), "6 7 0 1");
+    }
+
+    @Test
+    public void testRemove(){
+        ArrayDeque<String> actual = new ArrayDeque<String>();
+        actual.addFront("c");
+        actual.addFront("b");
+        actual.addFront("a");
+        actual.removeFirst();
+        assertEquals(actual.dequeString(), "b c");
+        actual.removeLast();
+        assertEquals(actual.dequeString(), "b");
+    }
+
+    @Test
+    public void testGet(){
+        ArrayDeque<Integer> actual = new ArrayDeque<Integer>();
+        actual.addFront(0);
+        actual.addFront(7);
+        assertEquals(actual.get(1), Integer.valueOf(0));
+        assertEquals(actual.get(0), Integer.valueOf(7));
+    }
+
+    @Test
+    public void testExpand(){
+        ArrayDeque<Integer> actual = new ArrayDeque<Integer>();
+        for (int i = 1; i < 9; i++){
+            actual.addLast(i);
+        }
+        actual.addFront(0);
+        assertEquals(actual.dequeString(), "0 1 2 3 4 5 6 7 8");
+        assertEquals(actual.size(), 9);
+    }
+
+    @Test
+    public void testShrink(){
+        ArrayDeque<Integer> actual = new ArrayDeque<Integer>();
+        for (int i = 0; i < 32; i++){
+            actual.addLast(i);
+        }
+        for (int i = 0; i < )
+        assertEquals(actual.dequeString(), "0 1 2 3 4 5 6 7 8");
+        assertEquals(actual.size(), 9);
     }
 
     public static void main(String[] args) {

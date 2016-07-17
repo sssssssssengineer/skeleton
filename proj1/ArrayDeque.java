@@ -4,7 +4,8 @@
  */
 public class ArrayDeque<Item> {
     private static int INIT_CAPACITY = 8;
-    private static int RFACTOR = 2;
+    private static int RESIZE_FACTOR = 2;
+    private static double USAGE_FACTOR = 0.25;
     public Item[] items;
     private int size;
     private int capacity;
@@ -18,7 +19,7 @@ public class ArrayDeque<Item> {
         rear = 1;
     }
 
-    /** For ArrayDequeTest */
+    /** Getter and setter */
     public void setItem(Item item, int index){ items[index] = item; }
     public Item getItem(int index){ return items[index]; }
 
@@ -32,41 +33,111 @@ public class ArrayDeque<Item> {
 
     /** Add item to ArrayDeque */
     public void addFront(Item item){
-        //resize if full
+        if (size == capacity){ expand(); }
         items[front] = item;
         front = nextLeft(front);
         size = size + 1;
     }
     public void addLast(Item item){
-        //resize if full
+        if (size == capacity){ expand(); }
         items[rear] = item;
         rear = nextRight(rear);
         size = size + 1;
     }
 
-
-
-    /** Determine the endpoint of deque traversal */
-    private int beforeRear(int rear){
-        return (rear == 0) ? (capacity - 1) : (rear - 1);
+    /** Remove item from ArrayDeque */
+    public Item removeFirst(){
+        front = nextRight(front);
+        Item toRemove = getItem(front);
+        setItem(null, front);
+        size = size - 1;
+        //shrink if too spacious
+        return toRemove;
     }
-    private int afterFront(int front){
-        return (front == capacity - 1) ? 0 : (front + 1);
+    public Item removeLast(){
+        rear = nextLeft(rear);
+        Item toRemove = getItem(rear);
+        setItem(null, rear);
+        size = size - 1;
+        //shrink if too spacious
+        return toRemove;
     }
 
-    /** Print deque, from afterFront to beforeRear */
-    public void printDeque(){
-        if (!isEmpty()){
-            int runner = afterFront(front);
-            while (runner != beforeRear(rear)){
-                System.out.print(getItem(runner) + " ");
-                runner = nextRight(runner);
-            }
-            System.out.print(getItem(runner));
+    /** Get item via index */
+    public Item get(int index){
+        int start = nextRight(front);
+        int actualIndex = (start + index) % capacity;
+        return getItem(actualIndex);
+    }
+
+    /**
+     * Performance optimization: resize
+     * Expand when it's full, shrink when it's too spacious
+     */
+    public void expand(){
+        Item[] newItems = (Item[]) new Object[capacity * RESIZE_FACTOR];
+        /*
+        int runner = nextRight(front);
+        int newItemsIndex = 1;
+        while (runner != nextLeft(rear)){
+            newItems[newItemsIndex] = getItem(runner);
+            newItemsIndex++;
+            runner = nextRight(runner);
         }
+        newItems[newItemsIndex] = getItem(runner);
+        items = newItems;
+        capacity *= RESIZE_FACTOR;
+        front = 0;
+        rear = newItemsIndex + 1;
+        */
+        int beginIndex = nextRight(front);
+        int endIndex = nextLeft(rear);
+        if (endIndex < beginIndex){
+            System.arraycopy(items, beginIndex, newItems, 1, capacity - beginIndex);
+            System.arraycopy(items, 0, newItems, capacity - beginIndex + 1, endIndex + 1);
+        } else {
+            System.arraycopy(items, beginIndex, newItems, 1, endIndex - beginIndex + 1);
+        }
+        items = newItems;
+        rear = capacity + 1;
+        capacity *= RESIZE_FACTOR;
+        front = 0;
     }
+    public void shrink(){
+        Item[] newItems = (Item[]) new Object[capacity / RESIZE_FACTOR];
+        int beginIndex = nextRight(front);
+        int endIndex = nextLeft(rear);
+        if (endIndex < beginIndex){
+            System.arraycopy(items, beginIndex, newItems, 1, capacity - beginIndex);
+            System.arraycopy(items, 0, newItems, capacity - beginIndex + 1, endIndex + 1);
+        } else {
+            System.arraycopy(items, beginIndex, newItems, 1, capacity);
+        }
+        items = newItems;
+        rear = capacity + 1;
+        capacity *= RESIZE_FACTOR;
+        front = 0;
+    }
+
+
+    /** Present deque using a String */
+    public String dequeString(){
+        String res = new String();
+        if (isEmpty()) { return res; }
+        int runner = nextRight(front);
+        while (runner != nextLeft(rear)){
+            res = res + getItem(runner).toString() + " ";
+            runner = nextRight(runner);
+        }
+        res = res + getItem(runner).toString();
+        return res;
+    }
+
+
     /** Trivial methods */
     public boolean isEmpty(){ return size == 0; }
     public int size(){ return size; }
+
+
 
 }
