@@ -24,7 +24,7 @@ alias subl="C:/Program\ Files/Sublime\ Text\ 2/sublime_text.exe"
 
 I follow instruction [here](http://www.cnblogs.com/IPrograming/p/Sublime-markdown-editor.html), use `Sublime Text` as my Markdown editor. For more detail, view [here](http://m.blog.csdn.net/article/details?id=51235792).
 
-Attaching pictures into Markdown is what I concern. First, I follow instruction [here](https://www.tekrevue.com/tip/how-to-take-and-manage-screenshots-in-windows-8/), make screenshots restored in `pics/`. 
+Attaching pictures into Markdown is what I concern. First, I follow instruction [here](https://www.tekrevue.com/tip/how-to-take-and-manage-screenshots-in-windows-8/), make screenshots restored in `pics/`. Second, follow instruction [here](http://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) to set relative link for pictures accessing. The result can only be viewed via Github, as relative link is only supported by Github instead of plugins for `Sublime Text`.
 
 
 ## Notes 
@@ -108,9 +108,4 @@ If `Dog` class is actually implemented in the 2nd way, then bug comes. It prints
 
 **Compile-time type and Runtime type**. Even though `sl` "points to" `VengefulSList` object, that its runtime type is `VengefulSList`, `sl` is declared as `SList` variable, that its compile-time type (static type) is `SList`.
 
-![lec9page25][1]
-
-![lec9page25](pics/1.png)
-
-
-  [1]: http://static.zybuluo.com/cys/ipbxqo2nog6kjh3zbjygi9mr/image_1ansf2svj5od15o71lapauahru9.png
+![lec9page25](pics/lec9page25.png)
