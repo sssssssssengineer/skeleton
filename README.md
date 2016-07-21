@@ -109,3 +109,51 @@ If `Dog` class is actually implemented in the 2nd way, then bug comes. It prints
 **Compile-time type and Runtime type**. Even though `sl` "points to" `VengefulSList` object, that its runtime type is `VengefulSList`, `sl` is declared as `SList` variable, that its compile-time type (static type) is `SList`.
 
 ![lec9page25](pics/lec9page25.png)
+
+Casting forces the compile-time type of any expression, but it maybe dangerous. WHY?
+
+![lec9page29](pics/lec9pages29.png)
+
+----------
+
+**High Order Function** is a function that takes other functions as input. In `Python`, HoF works like:
+
+```python
+def TenX(x):
+	return 10 * x
+
+def do_twice(f, x):
+	return f(f(x))
+
+print do_twice(TenX, 10)
+```
+
+In `Java`, it takes following steps to accomplish the same task:
+
+```java
+public interface IntUnaryFunction{
+	public int apply(int x);
+}
+
+public class TenX implements IntUnaryFunction{
+	public int apply(int x){
+		return 10 * x;
+	} 
+}
+
+public class HoFDemo{
+	public static int do_twice(IntUnaryFunction f, int x){
+		return f.apply(f.apply(x));
+	}
+	public static void main(String[] args){
+		System.out.println(do_twice(new TenX(), 10));
+	}
+}
+```
+
+----------
+
+### lec10: Abstract Classes, Practical HoFs
+
+
+
