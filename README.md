@@ -155,5 +155,55 @@ public class HoFDemo{
 
 ### lec10: Abstract Classes, Practical HoFs
 
+**Rule on dynamic/static type: ** Overridden non-static methods are selected at run time based on dynamic type, everything else is based on static type.
+
+```java
+//suppose ShowDog is subtype of Dog
+
+Object o2 = new ShowDog("Mortimer", "Corgi", 25, 512.2);
+
+ShowDog sdx = (ShowDog) o2;
+sdx.bark(); //ShowDog's bark()
+
+Dog dx = (Dog) o2;
+dx.bark(); //also ShowDog's bark()
+
+((Dog) o2).bark(); //also ShowDog's bark()
+
+Object o3 = (Dog) o2;
+o3.bark(); //an Object instance cannot bark 
+```
+
+QUESTION: 
+- What if a subclass has variables with the same name as a superclass?
+- What if subclass has a static method with the same signature as a superclass method? 
+
+ANSWER:
+These are called **hiding**(two static methods with the exact same signature). Don't do that.
+
+----------
+
+**Abstract Classes vs. Interfaces**: try to use interfaces whenever possible.
+
+----------
+
+**General Function** can be implemented through inheritance. For example, we want to compare between two dogs, but `>` is not a choice, as operator overloading does not exist in `Java`. Also, special `compareDog` function is not good. We solve this using interface and inheritance, creating a general maximizer.
+
+![lec10page22](pics/lec10page22.png)
+
+In this way, maximizer operates on multiple types gracefully, e.g.
+
+```java
+OurComparable[] objs = getItems("somefile.txt");
+return Maximizer.max(objs);
+```
+
+
+
+
+
+
+
+
 
 
