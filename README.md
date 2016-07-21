@@ -26,6 +26,12 @@ I follow instruction [here](http://www.cnblogs.com/IPrograming/p/Sublime-markdow
 
 Attaching pictures into Markdown is what I concern. First, I follow instruction [here](https://www.tekrevue.com/tip/how-to-take-and-manage-screenshots-in-windows-8/), make screenshots restored in `pics/`. Second, follow instruction [here](http://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) to set relative link for pictures accessing. The result can only be viewed via Github, as relative link is only supported by Github instead of plugins for `Sublime Text`.
 
+## Git
+
+### Revert Git repository to previous commit
+
+I have pushed commit to Github, and want to revert to that commit in my local repository. I follow instruction [here](http://stackoverflow.com/questions/4114095/revert-git-repository-to-a-previous-commit) and make it. In short, copy the commit No. from Github, and type in `git reset --hard xxxx` in local command line.
+
 
 ## Notes 
 
