@@ -112,7 +112,7 @@ If `Dog` class is actually implemented in the 2nd way, then bug comes. It prints
 
 Casting forces the compile-time type of any expression, but it maybe dangerous. WHY?
 
-![lec9page29](pics/lec9pages29.png)
+![lec9page29](pics/lec9page29.png)
 
 ----------
 
